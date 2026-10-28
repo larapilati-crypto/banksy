@@ -1,0 +1,113 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+@font-face {
+  font-family: 'Grafite';
+  src: url('fonts/Grafite.otf') format('opentype');
+  font-display: swap;
+}
+
+body {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  background-color: #e8e6e1;   
+  color: #1a1a1a;
+  margin: 0;                   
+  line-height: 1.6;
+}
+
+
+h1, h2, h3 {
+  font-family: 'Grafite', Impact, sans-serif;
+  letter-spacing: 1px;
+}
+
+
+.menu {
+  background-color: #1a1a1a;
+  border-bottom: 4px solid #85080c;  
+  padding: 15px;
+  text-align: center;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;  
+  font-weight: bold;
+  margin: 0 15px;
+}
+
+.menu a:hover {
+  color: #85080c;         }
+
+
+.conteudo {
+  max-width: 900px;       
+  margin: 0 auto;         
+  padding: 20px;
+}
+
+
+.titulo {
+  background-color: #d3cfc6;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.titulo h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  border: 4px solid #1a1a1a;
+  box-sizing: border-box;
+}
+
+
+.caixas {
+  display: flex;         
+  flex-wrap: wrap;         
+  justify-content: center;
+  gap: 20px;
+}
+
+.caixa {
+  background-color: white;
+  border: 3px solid #1a1a1a;
+  padding: 15px;
+  width: 260px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;   
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #1a1a1a;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+
+.rodape {
+  background-color: #1a1a1a;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
