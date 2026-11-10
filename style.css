@@ -1,8 +1,8 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://dl.dafont.com/dl/?f=bad_grunge');
 
 @font-face {
-  font-family: 'Grafite';
+  font-family: 'Bad Grunge';
   src: url('fonts/Grafite.otf') format('opentype');
   font-display: swap;
 }
@@ -17,7 +17,7 @@ body {
 
 
 h1, h2, h3 {
-  font-family: 'Grafite', Impact, sans-serif;
+  font-family: 'Bad Grunge', Impact, sans-serif;
   letter-spacing: 1px;
 }
 
