@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vídeo produzido pelo grupo para apresentar Banksy e sua arte urbana.">
+  <title>Nosso vídeo — BANKSY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=DM+Sans:wght@400;500;600;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"><script src="js/main.js" defer></script>
+</head>
+<body>
+  <div class="top-strip"><span>ARTE URBANA</span><span>04 — PRODUÇÃO DO GRUPO</span></div>
+  <header class="site-header"><a class="brand" href="index.html">B<span>.</span></a><button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Menu principal"><a href="index.html">Início</a><a href="obras.html">Obras</a><a href="curiosidades.html">Curiosidades</a><a class="active" href="video.html">Nosso vídeo <span class="nav-dot">●</span></a></nav>
+  </header>
+  <main>
+    <section class="page-hero section-wrap">
+      <p class="eyebrow"><span class="red-line"></span> 04 / NOSSA PRODUÇÃO</p>
+      <h1>BANKSY EM<br><span>POUCOS MINUTOS.</span></h1>
+      <p class="page-lead">Um vídeo feito pelo nosso grupo para apresentar o artista, suas obras e as ideias que fazem a arte dele ser tão comentada.</p>
+    </section>
+    <section class="video-section section-wrap reveal">
+      <div class="video-placeholder">
+        <div class="video-spray">PLAY<br><span>▶</span></div>
+        <p>ESPAÇO DO VÍDEO DO GRUPO</p>
+        <span>Adicione o arquivo ou o link do vídeo seguindo as instruções abaixo.</span>
+      </div>
+      <div class="video-instructions">
+        <p class="eyebrow">COMO COLOCAR O VÍDEO</p>
+        <h2>É só trocar o espaço reservado.</h2>
+        <ol>
+          <li>Coloque o vídeo na pasta <code>assets</code>, com o nome <code>banksy-grupo.mp4</code>.</li>
+          <li>Abra <code>video.html</code> e encontre o bloco com a classe <code>video-placeholder</code>.</li>
+          <li>Substitua esse bloco pelo código abaixo.</li>
+        </ol>
+        <pre><code>&lt;video class="group-video" controls poster="assets/capa-video.jpg"&gt;
+  &lt;source src="assets/banksy-grupo.mp4" type="video/mp4"&gt;
+  Seu navegador não consegue reproduzir este vídeo.
+&lt;/video&gt;</code></pre>
+        <p class="small-note">Se o vídeo estiver no YouTube, vocês também podem incorporar o link de incorporação no lugar do espaço reservado. O vídeo só aparecerá depois que vocês adicionarem o arquivo ou link.</p>
+      </div>
+    </section>
+    <section class="video-bottom section-wrap reveal">
+      <p class="eyebrow">ROTEIRO SUGERIDO</p><h2>O que contar no vídeo?</h2>
+      <div class="script-grid">
+        <div><span>01</span><h3>Apresentação</h3><p>Quem é Banksy e por que ele é conhecido.</p></div>
+        <div><span>02</span><h3>Obras</h3><p>Apresentem Girl with Balloon, Flower Thrower e os ratos.</p></div>
+        <div><span>03</span><h3>Curiosidades</h3><p>Contem sobre o leilão de 2018, Dismaland e o anonimato.</p></div>
+        <div><span>04</span><h3>Conclusão</h3><p>Expliquem como a arte de rua pode provocar reflexão.</p></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html">B<span>.</span></a><p>UM TRABALHO ESCOLAR SOBRE BANKSY</p><p>Arte urbana, perguntas e ideias.</p></footer>
+</body>
+</html>
