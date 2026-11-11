@@ -1,14 +1,144 @@
-<h2>Conhecendo Banksy</h2>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banksy - Nosso Vídeo</title>
 
-<p>Este espaço é para o vídeo da nossa apresentação. Assista abaixo:</p>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-<div style="width: 100%; max-width: 900px; margin: 20px auto;">
-    <iframe
-        width="100%"
-        height="500"
-        src="https://www.youtube.com/embed/BWflIA5A8xM"
-        title="Vídeo da apresentação sobre Banksy"
-        frameborder="0"
-        allowfullscreen>
-    </iframe>
-</div>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3f0;
+            color: #222;
+        }
+
+        header {
+            background: #fff;
+            padding: 22px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: #222;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .titulo {
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .titulo h1 {
+            font-size: 42px;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .titulo span {
+            color: #a84d59;
+        }
+
+        .conteudo {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .conteudo h2 {
+            font-size: 27px;
+        }
+
+        .botao {
+            display: inline-block;
+            background: #a84d59;
+            color: white;
+            padding: 12px 22px;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        .video {
+            background: #173d5b;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .video iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+                font-size: 11px;
+            }
+
+            .titulo h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">BANKSY.</div>
+
+        <nav>
+            <a href="index.html">INÍCIO</a>
+            <a href="quem.html">QUEM É BANKSY?</a>
+            <a href="obras.html">OBRAS</a>
+            <a href="curiosidades.html">CURIOSIDADES</a>
+            <a href="video.html">VÍDEO</a>
+        </nav>
+    </header>
+
+    <section class="titulo">
+        <h1>NOSSO <span>VÍDEO</span></h1>
+    </section>
+
+    <main class="conteudo">
+
+        <h2>Conhecendo Banksy</h2>
+
+        <p>
+            Este espaço é para o vídeo da nossa apresentação.
+            Assistam abaixo!
+        </p>
+
+        <div class="video">
+            <iframe
+                src="https://www.youtube.com/embed/BWflIA5A8xM"
+                title="Vídeo da apresentação sobre Banksy"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+    </main>
+
+</body>
+</html>
