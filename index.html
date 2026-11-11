@@ -1,109 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Conheça Banksy: arte urbana, obras, curiosidades e um vídeo de apresentação.">
-  <title>BANKSY — Arte que provoca</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=DM+Sans:wght@400;500;600;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BANKSY — Arte sem identidade</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
 </head>
 <body>
-  <div class="top-strip"><span>ARTE URBANA</span><span>REINO UNIDO · MUNDO</span></div>
-  <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Banksy, início">B<span>.</span></a>
-    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
-    <nav class="nav-links" aria-label="Menu principal">
-      <a class="active" href="index.html">Início</a>
-      <a href="obras.html">Obras</a>
-      <a href="curiosidades.html">Curiosidades</a>
-      <a href="video.html">Nosso vídeo <span class="nav-dot">●</span></a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="cover-hero" id="inicio">
-      <div class="cover-spray spray-left" aria-hidden="true">ART<br>IS<br>FOR<br>EVERYONE</div>
-      <div class="cover-spray spray-right" aria-hidden="true">WHO<br>IS<br>BANKSY?</div>
-      <p class="cover-kicker"><span></span> ARTE URBANA · REINO UNIDO · MUNDO <span></span></p>
-      <h1 class="cover-title">BANKSY<span class="cover-star" aria-hidden="true">✳</span></h1>
-      <p class="cover-subtitle">O artista de rua mais famoso do mundo — e ninguém sabe ao certo quem ele é.</p>
-      <div class="cover-art" role="img" aria-label="Ilustração estilizada de uma menina tentando alcançar um balão vermelho em um muro urbano">
-        <div class="cover-wall-lines" aria-hidden="true"></div>
-        <div class="cover-crack crack-one" aria-hidden="true"></div>
-        <div class="cover-crack crack-two" aria-hidden="true"></div>
-        <div class="cover-balloon" aria-hidden="true"><span></span></div>
-        <div class="cover-string" aria-hidden="true"></div>
-        <svg class="cover-girl" viewBox="0 0 160 260" aria-hidden="true">
-          <circle cx="81" cy="47" r="17" fill="#24211f"/>
-          <path d="M67 64 Q80 58 94 65 L108 113 L100 150 L59 150 L53 111Z" fill="#24211f"/>
-          <path d="M69 73 L42 45 L34 49 L57 92Z" fill="#24211f"/>
-          <path d="M36 49 L25 37 L30 32 L43 44Z" fill="#24211f"/>
-          <path d="M60 146 L56 220 L69 220 L82 161 L92 220 L106 220 L101 146Z" fill="#24211f"/>
-          <path d="M54 218 L70 218 L71 229 L48 229Z" fill="#24211f"/>
-          <path d="M92 218 L108 218 L117 229 L93 229Z" fill="#24211f"/>
-        </svg>
-        <span class="cover-caption">GIRL WITH BALLOON · UMA OBRA ICÔNICA</span>
-        <span class="cover-sticker">KEEP<br>LOOKING</span>
-      </div>
-      <div class="cover-bottom">
-        <span><b>01</b> / QUEM É BANKSY?</span>
-        <a class="cover-scroll" href="#quem-e">DESCUBRA A HISTÓRIA <span>↓</span></a>
-        <span>ARTE · HUMOR · CRÍTICA SOCIAL</span>
-      </div>
-    </section>
-    <section class="intro-section section-wrap reveal" id="quem-e">
-      <div class="section-heading">
-        <p class="eyebrow">01 / QUEM É BANKSY?</p>
-        <h2>Um nome conhecido.<br><span>Um rosto desconhecido.</span></h2>
-      </div>
-      <div class="intro-copy">
-        <p>Banksy é um artista de rua do Reino Unido, conhecido por usar stencils para criar imagens marcantes em muros e espaços públicos. Suas obras misturam humor, ironia e críticas à guerra, ao consumismo, à desigualdade e ao poder.</p>
-        <p>Sua identidade não foi confirmada publicamente. E talvez parte da força do seu trabalho esteja justamente nisso: a atenção fica na mensagem, não no artista.</p>
-        <a class="arrow-link" href="curiosidades.html">Saiba mais sobre o mistério <span>↗</span></a>
-      </div>
-    </section>
-
-    <section class="facts-band reveal">
-      <div class="fact"><strong>01</strong><span>Stencil é uma técnica muito associada ao seu trabalho.</span></div>
-      <div class="fact"><strong>02</strong><span>As obras costumam provocar debates sociais e políticos.</span></div>
-      <div class="fact"><strong>03</strong><span>O anonimato faz parte da história pública de Banksy.</span></div>
-    </section>
-
-    <section class="featured section-wrap reveal">
-      <div class="featured-top">
-        <div><p class="eyebrow">02 / PARA COMEÇAR</p><h2>Três obras para<br><span>conhecer de perto.</span></h2></div>
-        <a class="arrow-link" href="obras.html">Ver todas as obras <span>↗</span></a>
-      </div>
-      <div class="art-grid">
-        <a class="art-card art-card-balloon" href="obras.html#girl">
-          <div class="mini-art balloon-mini"><span class="mini-heart">♥</span><span class="mini-girl"></span></div>
-          <div class="card-meta"><span>01 / ESPERANÇA</span><span>↗</span></div>
-          <h3>Girl with Balloon</h3><p>Uma menina e um balão vermelho.</p>
-        </a>
-        <a class="art-card" href="obras.html#flower">
-          <div class="mini-art flower-mini"><span class="flower-burst">✿</span><span class="thrower"></span></div>
-          <div class="card-meta"><span>02 / PAZ</span><span>↗</span></div>
-          <h3>Flower Thrower</h3><p>Um gesto de protesto transformado em flores.</p>
-        </a>
-        <a class="art-card" href="obras.html#rats">
-          <div class="mini-art rat-mini"><span class="rat-eyes">••</span><span class="rat-tail">〰</span><span class="rat-word">RAT</span></div>
-          <div class="card-meta"><span>03 / RESISTÊNCIA</span><span>↗</span></div>
-          <h3>Ratos de Banksy</h3><p>Pequenos personagens que aparecem pela cidade.</p>
-        </a>
-      </div>
-    </section>
-
-    <section class="quote-section reveal">
-      <span class="quote-mark">“</span>
-      <p>A arte não precisa estar dentro de um museu<br>para fazer a gente parar e pensar.</p>
-      <span class="quote-credit">UMA IDEIA QUE COMBINA COM A ARTE DE RUA</span>
-    </section>
-  </main>
-
-  <footer class="site-footer"><a class="brand footer-brand" href="index.html">B<span>.</span></a><p>UM TRABALHO ESCOLAR SOBRE BANKSY</p><p>Arte urbana, perguntas e ideias.</p></footer>
-</body>
-</html>
+<header class="site-header">
+  <a class="brand" href="index.html">BANKSY<span>.</span></a>
+  <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a class="active" href="index.html">Início</a><a href="quem.html">Quem é Banksy?</a><a href="obras.html">Obras</a><a href="curiosidades.html">Curiosidades</a><a href="video.html">Vídeo</a>
+  </nav>
+</header>
+<main class="home-shell">
+  <section class="hero-copy">
+    <p class="eyebrow">EXHIBITION OF ARTWORKS FROM PRIVATE COLLECTIONS</p>
+    <h1><span class="red-word">BANKSY</span><br>GÊNIO OU<br>VANDALISMO<span class="red-word">?</span></h1>
+    <p class="hero-sub">O artista anônimo que transformou muros em mensagens para o mundo.</p>
+    <div class="quote-strip">“A arte deve confortar os perturbados e perturbar os confortáveis.”</div>
+    <div class="hero-actions"><a class="outline-btn" href="quem.html">CONHEÇA O ARTISTA</a><a class="outline-btn" href="obras.html">EXPLORE AS OBRAS</a></div>
+  </section>
+  <section class="hero-art" aria-label="Arte de rua">
+    <img src="https://thursd.com/storage/media/7106/banksy-advocates-for-peace-with-rage-the-flower-thrower003.jpeg" alt="Flower Thrower, obra de Banksy">
+    <span class="balloon" aria-hidden="true">♥</span>
+    <span class="art-caption">STREET ART / UK</span>
+  </section>
+</main>
+<section class="quick-links">
+  <a href="obras.html"><span>01</span><strong>Obras icônicas</strong><b>↗</b></a>
+  <a href="curiosidades.html"><span>02</span><strong>O mistério</strong><b>↗</b></a>
+  <a href="video.html"><span>03</span><strong>Nosso vídeo</strong><b>↗</b></a>
+</section>
+<footer><span>BANKSY<span class="red-word">.</span></span><span>ARTE • RUA • ANONIMATO</span><span>PROJETO ESCOLAR</span></footer>
+</body></html>
