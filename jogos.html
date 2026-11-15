@@ -1,8 +1,63 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jogos — BANKSY</title><link rel="stylesheet" href="style.css"></head>
-<body><header class="site-header"><a class="logo" href="index.html">B<span>.</span></a><button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button><nav class="nav"><a href="index.html">Início</a><a href="obras.html">Obras</a><a href="video.html">Vídeo</a><a class="active" href="jogos.html">Jogos</a></nav></header>
-<main class="page-main"><section class="page-heading"><p class="eyebrow red">03 / INTERAÇÃO</p><h1>Hora de<br><span>participar.</span></h1><p>Dois desafios rápidos para testar o que você aprendeu sobre Banksy e arte urbana.</p></section>
-<section class="games-grid">
- <article class="game-card"><p class="eyebrow red">JOGO 01 / QUIZ</p><h2>Você conhece Banksy?</h2><p id="question" class="game-question">Carregando pergunta...</p><div id="answers" class="answers"></div><p id="quiz-feedback" class="feedback" aria-live="polite"></p><div class="game-bottom"><span id="quiz-progress">Pergunta 1 de 5</span><button id="next-question" class="button small" disabled>Próxima →</button></div></article>
- <article class="game-card dark-card"><p class="eyebrow red">JOGO 02 / CRIATIVIDADE</p><h2>Ideia surpresa</h2><p>Receba um tema para imaginar sua própria intervenção artística (sem precisar pintar uma parede!).</p><div class="prompt-box" id="creative-prompt">Clique no botão e descubra seu desafio.</div><button class="button" id="new-prompt">Sortear ideia <b>↗</b></button></article>
-</section></main><footer><span>BANKSY<span class="red">.</span> — ARTE QUE PROVOCA</span><span>Projeto educativo • 2026</span></footer><script src="js/script.js"></script></body></html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banksy | Jogos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+<header>
+    <h1>BANKSY<span>.</span></h1>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="obras.html">Obras</a>
+        <a href="video.html">Vídeo</a>
+        <a href="jogos.html" class="active">Jogos</a>
+    </nav>
+</header>
+
+<main>
+    <section class="page-title">
+        <p class="tag">TESTE SEU CONHECIMENTO</p>
+        <h2>Entre no <span>jogo.</span></h2>
+        <p>Descubra o quanto você conhece sobre Banksy.</p>
+    </section>
+
+    <section class="content">
+        <h2>Jogo da memória</h2>
+        <p>Encontre os pares de imagens. Você tem 12 cartas!</p>
+
+        <div class="game-info">
+            <span>Jogadas: <strong id="moves">0</strong></span>
+            <span>Pares: <strong id="pairs">0</strong>/6</span>
+        </div>
+
+        <div id="memory-game" class="memory-game"></div>
+
+        <button class="btn" onclick="iniciarJogo()">Reiniciar jogo</button>
+        <p id="game-message" class="game-message"></p>
+    </section>
+
+    <section class="content quiz">
+        <h2>Quiz: você conhece Banksy?</h2>
+
+        <p>1. Qual técnica Banksy utiliza frequentemente em suas obras?</p>
+
+        <button class="quiz-option" onclick="responder(this, false)">Pintura a óleo</button>
+        <button class="quiz-option" onclick="responder(this, true)">Estêncil</button>
+        <button class="quiz-option" onclick="responder(this, false)">Escultura em madeira</button>
+
+        <p id="quiz-result"></p>
+    </section>
+</main>
+
+<footer>
+    <p>BANKSY — A ARTE NÃO PRECISA DE UM ROSTO.</p>
+</footer>
+
+</body>
+</html>
