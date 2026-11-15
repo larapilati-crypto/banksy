@@ -1,85 +1,138 @@
-// Menu responsivo
-document.querySelectorAll('.menu-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    const nav = button.parentElement.querySelector('.nav');
-    nav.classList.toggle('open');
-    button.setAttribute('aria-expanded', nav.classList.contains('open'));
-  });
-});
 
-// Modal interativo da galeria
-const modal = document.getElementById('artModal');
-if (modal) {
-  const title = document.getElementById('modalTitle');
-  const text = document.getElementById('modalText');
-  const close = modal.querySelector('.modal-close');
+// Efeito de favoritar obras
+function favoritar(botao) {
+    botao.classList.toggle("favorited");
 
-  document.querySelectorAll('.art-card').forEach(card => {
-    const openModal = () => {
-      title.textContent = card.dataset.title;
-      text.textContent = card.dataset.info;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-    };
-    card.addEventListener('click', openModal);
-    card.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openModal();
-      }
-    });
-  });
-
-  close.addEventListener('click', () => {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-  });
-  modal.addEventListener('click', event => {
-    if (event.target === modal) {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-    }
-  });
-}
-
-// Curiosidade aleatória na página Quem é Banksy
-const factButton = document.getElementById('factButton');
-if (factButton) {
-  const facts = [
-    'Banksy usa estêncil para conseguir criar imagens rapidamente.',
-    'Bristol, no Reino Unido, está ligada ao começo de sua trajetória.',
-    'Os ratos são personagens recorrentes em seus grafites.',
-    'Banksy dirigiu o documentário Exit Through the Gift Shop.'
-  ];
-  factButton.addEventListener('click', () => {
-    document.getElementById('factReveal').textContent =
-      facts[Math.floor(Math.random() * facts.length)];
-  });
-}
-
-// Quiz simples na página de curiosidades
-document.querySelectorAll('.quiz-options button').forEach(button => {
-  button.addEventListener('click', () => {
-    const result = document.getElementById('quizResult');
-    if (button.dataset.answer === 'correct') {
-      result.textContent = 'Isso mesmo! Banksy utiliza bastante a técnica de estêncil.';
+    if (botao.classList.contains("favorited")) {
+        botao.textContent = "★";
     } else {
-      result.textContent = 'Não é essa. Tente novamente!';
+        botao.textContent = "☆";
     }
-  });
-});
-
-// Pré-visualização do vídeo escolhido na página Vídeo
-const videoUpload = document.getElementById('videoUpload');
-if (videoUpload) {
-  videoUpload.addEventListener('change', () => {
-    const file = videoUpload.files[0];
-    if (!file) return;
-    const player = document.getElementById('videoPlayer');
-    const video = document.createElement('video');
-    video.controls = true;
-    video.src = URL.createObjectURL(file);
-    player.innerHTML = '';
-    player.appendChild(video);
-  });
 }
+
+// Imagens utilizadas no jogo da memória
+const imagens = [
+    "https://upload.wikimedia.org/wikipedia/en/6/6f/Banksy_Girl_and_Balloon.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/8/8e/Banksy_Flower_Thrower.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/4/4a/Banksy_Laugh_Now.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/3/3b/Banksy_Kissing_Coppers.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/7/7a/Banksy_No_Ball_Games.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/5e/Banksy_One_Nation_Under_CCTV.jpg"
+];
+
+let primeiraCarta = null;
+let segundaCarta = null;
+let bloqueado = false;
+let jogadas = 0;
+let pares = 0;
+
+function iniciarJogo() {
+    const jogo = document.getElementById("memory-game");
+
+    if (!jogo) return;
+
+    jogo.innerHTML = "";
+    primeiraCarta = null;
+    segundaCarta = null;
+    bloqueado = false;
+    jogadas = 0;
+    pares = 0;
+
+    document.getElementById("moves").textContent = jogadas;
+    document.getElementById("pairs").textContent = pares;
+    document.getElementById("game-message").textContent = "";
+
+    let cartas = [...imagens, ...imagens];
+
+    // Embaralhar as cartas
+    cartas.sort(() => Math.random() - 0.5);
+
+    cartas.forEach((imagem) => {
+        const carta = document.createElement("button");
+        carta.classList.add("memory-card");
+        carta.textContent = "?";
+        carta.dataset.image = imagem;
+
+        carta.addEventListener("click", () => virarCarta(carta));
+
+        jogo.appendChild(carta);
+    });
+}
+
+function virarCarta(carta) {
+    if (
+        bloqueado ||
+        carta === primeiraCarta ||
+        carta.classList.contains("matched") ||
+        carta.classList.contains("revealed")
+    ) {
+        return;
+    }
+
+    carta.classList.add("revealed");
+    carta.innerHTML = `<img src="${carta.dataset.image}" alt="Obra de Banksy">`;
+
+    if (!primeiraCarta) {
+        primeiraCarta = carta;
+        return;
+    }
+
+    segundaCarta = carta;
+    jogadas++;
+
+    document.getElementById("moves").textContent = jogadas;
+
+    if (primeiraCarta.dataset.image === segundaCarta.dataset.image) {
+        primeiraCarta.classList.add("matched");
+        segundaCarta.classList.add("matched");
+
+        primeiraCarta = null;
+        segundaCarta = null;
+
+        pares++;
+        document.getElementById("pairs").textContent = pares;
+
+        if (pares === 6) {
+            document.getElementById("game-message").textContent =
+                "Parabéns! Você encontrou todas as obras!";
+        }
+    } else {
+        bloqueado = true;
+
+        setTimeout(() => {
+            primeiraCarta.textContent = "?";
+            segundaCarta.textContent = "?";
+
+            primeiraCarta.classList.remove("revealed");
+            segundaCarta.classList.remove("revealed");
+
+            primeiraCarta = null;
+            segundaCarta = null;
+            bloqueado = false;
+        }, 1000);
+    }
+}
+
+// Quiz
+function responder(botao, correto) {
+    const resultado = document.getElementById("quiz-result");
+
+    if (!resultado) return;
+
+    const botoes = document.querySelectorAll(".quiz-option");
+
+    botoes.forEach((b) => {
+        b.disabled = true;
+    });
+
+    if (correto) {
+        resultado.textContent = "Correto! Banksy utiliza frequentemente a técnica do estêncil.";
+        resultado.style.color = "#70c989";
+    } else {
+        resultado.textContent = "Não foi dessa vez! A resposta correta é estêncil.";
+        resultado.style.color = "#e63232";
+    }
+}
+
+// Inicia o jogo somente quando a página de jogos é aberta
+document.addEventListener("DOMContentLoaded", iniciarJogo);
