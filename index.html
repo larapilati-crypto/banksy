@@ -7,7 +7,120 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+:root{--bg:#0a0a0a;--ink:#f1eee6;--red:#e4262f;--mute:#9b978e;--line:#2a2a2a;--card:#141414}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.65 'Work Sans',system-ui,sans-serif;padding-left:210px;min-height:100vh;
+background-image:radial-gradient(circle at 80% 0,#2a0a0c 0,transparent 40%)}
+h1,h2,h3{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.02em}
+.hand{font-family:'Permanent Marker',cursive;color:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.side{position:fixed;inset:0 auto 0 0;width:210px;padding:28px 18px;border-right:1px solid var(--line);background:#0c0c0c;display:flex;flex-direction:column;gap:6px;z-index:20}
+.logo{font:1.9rem Anton;color:var(--ink);text-decoration:none;margin-bottom:22px;transform:rotate(-3deg);display:inline-block}
+.side button{all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;color:var(--mute);transition:.2s;user-select:none}
+.side button:hover{color:var(--ink);background:#1a1a1a}
+.side button.on{color:#fff;background:linear-gradient(90deg,#4a1013,#1a0b0c);box-shadow:inset 3px 0 var(--red)}
+.side button:focus-visible{outline:2px solid var(--red)}
+.tab{display:none;padding:56px clamp(20px,5vw,72px) 90px;max-width:1200px}
+.tab.on{display:block;animation:in .5s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.title{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;margin-bottom:18px;text-transform:uppercase;color:#d9ece6}
+.lead{color:var(--mute);max-width:60ch;margin-bottom:26px}
+.hero{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;min-height:78vh;margin-bottom:40px}
+#spray{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px);pointer-events:none}
+.hero-text{position:relative}
+.small{font-size:1.1rem}.big{font-size:clamp(1.8rem,4vw,3rem);transform:rotate(-2deg);margin:6px 0}.under{font-size:1.15rem;color:var(--ink);text-decoration:underline wavy var(--red);text-underline-offset:6px}
+.glitch{position:relative;font-size:clamp(5rem,15vw,11rem);line-height:.9;color:#d9ece6;text-shadow:3px 3px 0 #000}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;overflow:hidden}
+.glitch::before{color:var(--red);left:3px;clip-path:inset(0 0 60% 0);animation:gl 3.5s infinite steps(1)}
+.glitch::after{color:#fff;left:-3px;clip-path:inset(60% 0 0 0);animation:gl 3.5s infinite steps(1) reverse}
+@keyframes gl{0%,90%,100%{transform:none;opacity:0}92%{transform:translate(-6px,2px);opacity:.9}95%{transform:translate(5px,-2px);opacity:.9}}
+.frame-wrap{position:relative;text-align:center}
+.frame{position:relative;width:min(100%,320px);aspect-ratio:200/260;margin:0 auto;border:12px solid #1d1b18;outline:2px solid var(--red);box-shadow:0 30px 60px #000a,0 0 80px #e4262f33;cursor:pointer;background:#ece9e1}
+.strip{position:absolute;top:0;height:100%;width:10%;overflow:hidden;transition:transform 1.4s cubic-bezier(.5,0,.3,1)}
+.strip svg{position:absolute;top:0;height:100%;width:1000%}
+.frame.shred .strip{transform:translateY(var(--d)) rotate(var(--r))}
+.frame-wrap figcaption{margin-top:18px;font-size:1rem}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);padding:24px;border-radius:14px;transition:.3s}
+.card:nth-child(2){transform:rotate(1deg)}.card:nth-child(3){transform:rotate(-1deg)}
+.card:hover{transform:none;border-color:var(--red)}
+.card h3{font-size:1.6rem;color:var(--red);margin-bottom:8px}
+.quote{margin:60px 0 0;font:clamp(1.6rem,4vw,2.8rem)/1.2 Anton;border-left:6px solid var(--red);padding-left:22px}
+.quote span{display:block;font:.85rem 'Work Sans';color:var(--mute);margin-top:10px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+input{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:10px 14px;border-radius:10px;font:inherit;min-width:240px}
+.chip{background:none;border:1px solid var(--line);color:var(--ink);padding:8px 16px;border-radius:99px;cursor:pointer;font:inherit}
+.chip.on,.chip:hover{background:var(--red);border-color:var(--red)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:1.05rem Anton;letter-spacing:.06em;color:var(--red);cursor:pointer;background:#111;position:sticky;top:0}
+tbody tr{transition:.2s}tbody tr:hover{background:#1c0d0e}
+.tag{display:inline-block;font-size:.72rem;border:1px solid var(--red);color:var(--red);padding:1px 8px;border-radius:99px;margin-left:8px;vertical-align:middle}
+.timeline{list-style:none;position:relative;padding-left:44px;max-width:760px}
+.timeline::before,.timeline .fill{content:"";position:absolute;left:11px;top:0;width:3px;background:var(--line)}
+.timeline::before{bottom:0}
+.timeline .fill{background:var(--red);height:0;box-shadow:0 0 12px var(--red);transition:height .2s}
+.timeline li{position:relative;padding-bottom:38px;opacity:.35;transition:.5s}
+.timeline li.seen{opacity:1}
+.timeline li::before{content:"";position:absolute;left:-41px;top:6px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:3px solid var(--line);transition:.4s}
+.timeline li.seen::before{border-color:var(--red);background:var(--red)}
+.timeline .yr{font:2.2rem Anton;color:#d9ece6}.timeline h3{font-size:1.2rem;color:var(--red)}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.game h3{font-size:1.8rem;margin-bottom:6px}.meta{color:var(--mute);margin-bottom:14px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mc{aspect-ratio:3/4;perspective:600px;border:0;background:none;padding:0;cursor:pointer;position:relative}
+.mc i{position:absolute;inset:0;transition:transform .5s;transform-style:preserve-3d}
+.mc .f,.mc .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-style:normal;text-align:center;padding:4px}
+.mc .b{background:repeating-linear-gradient(45deg,#1a1a1a 0 8px,#141414 8px 16px);border:1px solid var(--line);font:2rem Anton;color:var(--red)}
+.mc .f{background:var(--ink);color:#000;transform:rotateY(180deg);font-size:.66rem;font-weight:700;line-height:1.2}
+.mc .f b{font-size:2.2rem;filter:grayscale(1) contrast(1.4) drop-shadow(2px 2px 0 var(--red))}
+.mc.flip i{transform:rotateY(180deg)}.mc.done .f{background:var(--red);color:#fff}
+.win{margin-top:14px;font-size:1.2rem}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;background:#0d0d0d;color:var(--ink);border:1px solid var(--line);border-radius:10px;cursor:pointer;font:inherit}
+.opt:hover{border-color:var(--red)}.ok{background:#1f3a24!important;border-color:#4caf50!important}.no{background:#3a1416!important;border-color:var(--red)!important}
+.exp{color:var(--mute);margin:10px 0}
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.flip{height:220px;perspective:900px;cursor:pointer;border:0;background:none;padding:0;color:inherit;font:inherit;text-align:left}
+.flip div{position:relative;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on div{transform:rotateY(180deg)}
+.flip span{position:absolute;inset:0;padding:22px;border-radius:14px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center}
+.flip .a{background:var(--card);border:1px solid var(--line);font:1.7rem/1.15 Anton}
+.flip .a small{font:.9rem 'Permanent Marker';color:var(--red);margin-top:12px}
+.flip .z{background:var(--red);color:#fff;transform:rotateY(180deg);font-size:.98rem;line-height:1.5}
+.video{aspect-ratio:16/9;max-width:960px;border:2px solid var(--red);border-radius:14px;overflow:hidden;box-shadow:0 0 80px #e4262f33}
+.video iframe{width:100%;height:100%;border:0}
+.vlink{margin:18px 0 0}.vlink a{text-decoration:none;color:#fff;display:inline-block;margin-left:8px}
+.cursor{position:fixed;width:26px;height:26px;border:2px solid var(--red);border-radius:50%;pointer-events:none;z-index:99;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;display:none}
+.cursor.big{width:54px;height:54px;background:#e4262f33}
+@media(pointer:fine){.cursor{display:block}}
+#stars{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+main{position:relative;z-index:1}
+.rat{position:fixed;bottom:10px;left:-100px;width:84px;z-index:15;pointer-events:none;animation:run 16s linear infinite 4s}
+.rat .rb{animation:bob .25s steps(2) infinite}
+@keyframes run{to{left:calc(100vw + 100px)}}
+@keyframes bob{50%{transform:translateY(-2px) rotate(-2deg)}}
+.marquee{overflow:hidden;white-space:nowrap;border-block:1px solid var(--line);margin:0 0 50px;padding:12px 0;font:1.6rem Anton;letter-spacing:.08em;color:var(--red);transform:rotate(-1deg)}
+.marquee div{display:inline-block;animation:mq 28s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+.foto{display:block;width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.ph{display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,#181818 0 8px,#111 8px 16px);color:var(--mute);font-size:.7rem;text-align:center;line-height:1.2}
+.timeline .foto{width:100%;max-width:360px;height:180px;margin-top:12px}
+.mc .f .foto{width:100%;height:60%;border:0;border-radius:6px 6px 0 0}
+.game.wide{grid-column:1/-1}
+#wall{width:100%;height:auto;background:#161513;border:2px solid var(--line);border-radius:12px;touch-action:none;cursor:crosshair;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:60px 30px}
+@media(max-width:820px){
+body{padding:0 0 70px}
+.side{inset:auto 0 0 0;width:auto;flex-direction:row;overflow-x:auto;padding:8px;border-right:0;border-top:1px solid var(--line)}
+.side .logo{display:none}.side button{white-space:nowrap;font-size:.85rem}
+.hero{grid-template-columns:1fr}.tab{padding-top:36px}
+.rat{bottom:76px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <canvas id="stars" aria-hidden="true"></canvas>
@@ -25,7 +138,6 @@
 </nav>
 
 <main>
-<!-- INÍCIO -->
 <section id="inicio" class="tab on">
   <div class="hero">
     <canvas id="spray"></canvas>
@@ -51,7 +163,6 @@
   <blockquote class="quote">“Arte que não incomoda é só decoração.”<span>Frase de efeito deste site, inspirada no espírito dele</span></blockquote>
 </section>
 
-<!-- OBRAS -->
 <section id="obras" class="tab">
   <h2 class="title">As obras.</h2>
   <p class="lead">Das mais famosas às que poucos conhecem. Clique nos títulos da tabela para ordenar.</p>
@@ -69,14 +180,12 @@
   </div>
 </section>
 
-<!-- LINHA DO TEMPO -->
 <section id="tempo" class="tab">
   <h2 class="title">Da rua ao mundo.</h2>
   <p class="lead">Do grafite ilegal em Bristol aos leilões de milhões. Role para acompanhar a linha.</p>
   <ol class="timeline" id="timeline"></ol>
 </section>
 
-<!-- JOGOS -->
 <section id="jogos" class="tab">
   <h2 class="title">Jogue com seu olhar crítico.</h2>
   <div class="games">
@@ -98,14 +207,12 @@
   </div>
 </section>
 
-<!-- CURIOSIDADES -->
 <section id="curiosidades" class="tab">
   <h2 class="title">Curiosidades que provocam.</h2>
   <p class="lead">Toque nos cartões para virar.</p>
   <div class="flips" id="flips"></div>
 </section>
 
-<!-- VÍDEO -->
 <section id="video" class="tab">
   <h2 class="title">Assista.</h2>
   <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/Ux6Gbmv82C0" title="Vídeo sobre Banksy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
@@ -113,6 +220,213 @@
 </section>
 </main>
 
-<script src="script.js"></script>
+<script>
+/* COLOQUE SEUS LINKS DE IMAGEM: preencha img:'' nas obras, o 4º item de cada linha do tempo e o 3º item de cada carta da memória. */
+const foto=(u,alt)=>u?`<img class="foto" src="${u}" alt="${alt}" loading="lazy">`:`<div class="foto ph">sua imagem aqui</div>`;
+const OBRAS = [
+ {img:'',nome:'Girl with Balloon',ano:2002,local:'Londres, Reino Unido',t:'famosa',d:'Menina soltando um balão vermelho em forma de coração. Em 2018, uma versão emoldurada se autodestruiu em leilão.'},
+ {img:'',nome:'Flower Thrower',ano:2003,local:'Jerusalém e Belém',t:'famosa',d:'Manifestante lança um buquê em vez de uma bomba. Virou símbolo de paz.'},
+ {img:'',nome:'Kissing Coppers',ano:2004,local:'Brighton, Reino Unido',t:'famosa',d:'Dois policiais se beijando, na parede de um pub. Uma provocação sobre autoridade e afeto.'},
+ {img:'',nome:'Crude Oils (ratos)',ano:2005,local:'Londres, Reino Unido',t:'rara',d:'Releituras de quadros clássicos tomadas por ratos, exibidas em exposição.'},
+ {img:'',nome:'Show Me the Monet',ano:2005,local:'Londres, Reino Unido',t:'rara',d:'Uma ponte de Monet com carrinhos de supermercado e cones de trânsito afundados.'},
+ {img:'',nome:'Barely Legal',ano:2006,local:'Los Angeles, EUA',t:'rara',d:'Exposição com um elefante pintado em uma sala, para falar do problema que todos fingem não ver.'},
+ {img:'',nome:'Devolved Parliament',ano:2009,local:'Londres, Reino Unido',t:'rara',d:'Parlamento britânico ocupado por chimpanzés. Foi vendida em 2019 por cerca de 9,9 milhões de libras.'},
+ {img:'',nome:'Slave Labour',ano:2012,local:'Londres, Reino Unido',t:'rara',d:'Criança costurando bandeirinhas, ligada ao jubileu da rainha. Foi retirada da parede e levada a leilão.'},
+ {img:'',nome:'Mobile Lovers',ano:2014,local:'Bristol, Reino Unido',t:'rara',d:'Casal abraçado, mas cada um olhando o próprio celular.'},
+ {img:'',nome:'Love is in the Bin',ano:2018,local:'Sotheby’s, Londres',t:'famosa',d:'A moldura triturou a tela logo após a venda. Revendida em 2021 por cerca de 18,6 milhões de libras.'},
+ {img:'',nome:'Game Changer',ano:2020,local:'Southampton, Reino Unido',t:'rara',d:'Criança brincando com um super-herói enfermeiro, doada a um hospital durante a pandemia.'},
+ {img:'',nome:'Murais de Borodianka',ano:2022,local:'Ucrânia',t:'rara',d:'Obras pintadas em prédios destruídos pela guerra, como uma criança derrubando um adulto no judô.'}
+];
+const LINHA = [
+ ['Anos 1990','Bristol: o começo','Ele aparece na cena de grafite de Bristol, cidade conhecida pela cultura de rua e pela música. Começa pintando à mão livre.',''],
+ ['Fim dos 1990','A virada do stencil','O molde recortado deixa o trabalho mais rápido e anônimo, útil para quem pinta na ilegalidade.',''],
+ ['Início dos 2000','Londres vira palco','Ratos, macacos e policiais surgem pelas ruas. A menina com o balão aparece em 2002.',''],
+ ['2005','Muro na Cisjordânia','Pinta obras no muro de separação em Belém e Jerusalém e chama atenção global.',''],
+ ['2005','Invade os museus','Pendura obras próprias, sem permissão, em museus de Londres e Nova York.',''],
+ ['2010','Exit Through the Gift Shop','Seu filme é indicado ao Oscar de melhor documentário.',''],
+ ['2013','Nova York, um mês','A residência “Better Out Than In” cria uma obra nova por dia pela cidade.',''],
+ ['2015','Dismaland','Um parque de diversões sombrio em Weston-super-Mare, na Inglaterra, recebe milhares de visitantes.',''],
+ ['2017','Walled Off Hotel','Abre um hotel em Belém, de frente para o muro, com quartos e obras suas.',''],
+ ['2018','A tela se tritura','Girl with Balloon se destrói após ser vendida na Sotheby’s e ganha outro nome e outro valor.',''],
+ ['2022','Ucrânia','Obras surgem em Kiev e arredores, e a guerra vira tema direto.','']
+];
+const CURIOS = [
+ ['Ninguém sabe quem ele é','Teorias existem, mas nunca houve confirmação oficial dele.','O anonimato protege contra processos e aumenta o mistério.'],
+ ['Ele já vendeu notas falsas','Notas de libra com o rosto de Diana, chamadas Di-Faced Tenner, foram distribuídas em um carnaval.','Era sátira, mas o formato imitava dinheiro de verdade.'],
+ ['Quadros de graça nas ruas','Em 2013, uma banca em Nova York vendeu obras autênticas por 60 dólares.','Quase ninguém comprou. Três horas depois, só uma pessoa havia levado.'],
+ ['Pest Control','Só um órgão de autenticação, criado por ele, certifica obras como verdadeiras.','Quem compra um “Banksy” precisa passar por ele.'],
+ ['O caso da trituradora','Dizem que ele escondeu o mecanismo na moldura anos antes.','Depois da venda, a obra valeu ainda mais.'],
+ ['Parque de diversões do mal','Dismaland tinha atrações como um castelo em ruínas e um carrossel de cavalos.','Foi desmontado, e a madeira virou abrigo para refugiados em Calais.']
+];
+const MEM = [['🎈','Girl with Balloon',''],['🐀','Rato',''],['💐','Flower Thrower',''],['👮','Kissing Coppers',''],['🐒','Macacos',''],['📱','Mobile Lovers',''],['🏨','Walled Off',''],['✂️','Love is in the Bin','']];
+const QUIZ = [
+ ['Banksy é de Bristol, na Inglaterra.',true,'Segundo a maioria dos relatos, sim, mas ele nunca confirmou.'],
+ ['A identidade de Banksy foi oficialmente revelada.',false,'Nunca foi confirmada. Há apenas teorias.'],
+ ['Girl with Balloon se destruiu após um leilão.',true,'Foi em 2018, na Sotheby’s.'],
+ ['Banksy abriu um hotel em frente a um muro de separação.',true,'O Walled Off Hotel fica em Belém.'],
+ ['Dismaland ficava em Paris.',false,'Ficava em Weston-super-Mare, na Inglaterra.']
+];
+
+/* ---------- Abas ---------- */
+const tabs=[...document.querySelectorAll('.tab')], btns=[...document.querySelectorAll('[data-tab]')];
+function go(id){
+  if(!document.getElementById(id)) id='inicio';
+  tabs.forEach(t=>t.classList.toggle('on',t.id===id));
+  document.querySelectorAll('.side button').forEach(b=>b.classList.toggle('on',b.dataset.tab===id));
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+  scrollTo(0,0);
+  if(id==='tempo') updTimeline();
+}
+btns.forEach(b=>b.addEventListener('click',e=>{e.preventDefault();go(b.dataset.tab)}));
+addEventListener('hashchange',()=>go(location.hash.slice(1)));
+
+/* ---------- Quadro que se tritura ---------- */
+const SVG=`<svg viewBox="0 0 200 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="260" fill="#ece9e1"/><path d="M135 85C100 62 100 30 122 30c8 0 13 6 13 12 0-6 5-12 13-12 22 0 22 32-13 55z" fill="#e4262f"/><path d="M135 85Q120 115 100 150" stroke="#111" stroke-width="2" fill="none"/><circle cx="80" cy="150" r="14" fill="#111"/><path d="M70 140q-8 10 0 22M92 142q8 6 4 18" stroke="#111" stroke-width="5" fill="none"/><path d="M85 172L100 150" stroke="#111" stroke-width="7" stroke-linecap="round"/><path d="M80 164L52 236h56z" fill="#111"/><path d="M68 236v14M92 236v14" stroke="#111" stroke-width="6"/><path d="M20 252h160" stroke="#111" stroke-width="3"/></svg>`;
+const frame=document.getElementById('frame');
+for(let i=0;i<10;i++){
+  const s=document.createElement('div'); s.className='strip'; s.style.left=i*10+'%';
+  s.style.setProperty('--d',(38+Math.random()*22)+'%'); s.style.setProperty('--r',(Math.random()*8-4)+'deg');
+  s.style.transitionDelay=(i*.07)+'s'; s.innerHTML=SVG;
+  s.firstChild.style.left=-i*100+'%'; frame.appendChild(s);
+}
+let shredTimer;
+function shred(){frame.classList.toggle('shred');clearTimeout(shredTimer);
+  if(frame.classList.contains('shred')) shredTimer=setTimeout(()=>frame.classList.remove('shred'),5000);}
+frame.addEventListener('click',shred);
+frame.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();shred()}});
+
+/* ---------- Spray no herói ---------- */
+const cv=document.getElementById('spray'), cx=cv.getContext('2d');
+function fit(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight}
+fit(); addEventListener('resize',fit);
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  document.querySelector('.hero').addEventListener('mousemove',e=>{
+    const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    for(let i=0;i<10;i++){const a=Math.random()*6.28,d=Math.random()*18;
+      cx.fillStyle=Math.random()<.8?'#e4262f':'#f1eee6';
+      cx.fillRect(x+Math.cos(a)*d,y+Math.sin(a)*d,1+Math.random()*2.5,1+Math.random()*2.5)}
+  });
+  (function fade(){cx.globalCompositeOperation='destination-out';cx.fillStyle='rgba(0,0,0,.025)';
+    cx.fillRect(0,0,cv.width,cv.height);cx.globalCompositeOperation='source-over';requestAnimationFrame(fade)})();
+}
+
+/* ---------- Cursor ---------- */
+const cur=document.querySelector('.cursor');
+addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  cur.classList.toggle('big',!!e.target.closest('button,a,input,.frame,.opt'))});
+
+/* ---------- Tabela ---------- */
+let filtro='todas',ord={k:'ano',asc:true};
+const tb=document.querySelector('#tabela tbody'),busca=document.getElementById('busca');
+function tabela(){
+  const q=busca.value.toLowerCase();
+  const l=OBRAS.filter(o=>(filtro==='todas'||o.t===filtro)&&(o.nome+o.local+o.ano+o.d).toLowerCase().includes(q))
+    .sort((a,b)=>(a[ord.k]>b[ord.k]?1:-1)*(ord.asc?1:-1));
+  tb.innerHTML=l.map(o=>`<tr><td>${foto(o.img,o.nome)}</td><td>${o.nome}<span class="tag">${o.t==='famosa'?'famosa':'rara'}</span></td><td>${o.ano}</td><td>${o.local}</td><td>${o.d}</td></tr>`).join('')||'<tr><td colspan="5">Nada encontrado. Tente outra palavra.</td></tr>';
+}
+busca.addEventListener('input',tabela);
+document.querySelectorAll('[data-f]').forEach(c=>c.addEventListener('click',()=>{
+  filtro=c.dataset.f;document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('on',x===c));tabela()}));
+document.querySelectorAll('th[data-k]').forEach(h=>h.addEventListener('click',()=>{
+  ord={k:h.dataset.k,asc:ord.k===h.dataset.k?!ord.asc:true};tabela()}));
+tabela();
+
+/* ---------- Linha do tempo ---------- */
+const tl=document.getElementById('timeline');
+tl.innerHTML='<span class="fill"></span>'+LINHA.map(l=>`<li><div class="yr">${l[0]}</div><h3>${l[1]}</h3><p>${l[2]}</p>${foto(l[3],l[1])}</li>`).join('');
+function updTimeline(){
+  const items=[...tl.querySelectorAll('li')],h=innerHeight*.75;let last=0;
+  items.forEach(li=>{const seen=li.getBoundingClientRect().top<h;li.classList.toggle('seen',seen);if(seen)last=li.offsetTop+12});
+  tl.querySelector('.fill').style.height=last+'px';
+}
+addEventListener('scroll',updTimeline);
+
+/* ---------- Curiosidades ---------- */
+document.getElementById('flips').innerHTML=CURIOS.map(c=>`<button class="flip"><div><span class="a">${c[0]}<small>toque para virar</small></span><span class="z">${c[1]}<br><br><b>${c[2]}</b></span></div></button>`).join('');
+document.querySelectorAll('.flip').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('on')));
+
+/* ---------- Jogo da memória ---------- */
+const board=document.getElementById('board'),movesEl=document.getElementById('moves'),bestEl=document.getElementById('best'),winEl=document.getElementById('win');
+let moves,open,matched;
+const getBest=()=>{try{return localStorage.getItem('bk-best')}catch(e){return null}};
+function showBest(){bestEl.textContent=getBest()||'–'}
+function memoria(){
+  moves=0;open=[];matched=0;movesEl.textContent=0;winEl.hidden=true;showBest();
+  const deck=[...MEM,...MEM].map(v=>({v,r:Math.random()})).sort((a,b)=>a.r-b.r).map(o=>o.v);
+  board.innerHTML=deck.map((c,i)=>`<button class="mc" data-n="${c[1]}" aria-label="Carta ${i+1}"><i><span class="b">?</span><span class="f">${c[2]?foto(c[2],c[1]):`<b>${c[0]}</b>`}${c[1]}</span></i></button>`).join('');
+  board.querySelectorAll('.mc').forEach(c=>c.addEventListener('click',()=>virar(c)));
+}
+function virar(c){
+  if(open.length===2||c.classList.contains('flip'))return;
+  c.classList.add('flip');open.push(c);
+  if(open.length<2)return;
+  movesEl.textContent=++moves;
+  const [a,b]=open;
+  if(a.dataset.n===b.dataset.n){
+    a.classList.add('done');b.classList.add('done');open=[];
+    if(++matched===MEM.length){winEl.hidden=false;const best=getBest();
+      if(!best||moves<+best){try{localStorage.setItem('bk-best',moves)}catch(e){}showBest()}}
+  }else setTimeout(()=>{a.classList.remove('flip');b.classList.remove('flip');open=[]},900);
+}
+document.getElementById('reset').addEventListener('click',memoria);
+memoria();
+
+/* ---------- Quiz ---------- */
+const qz=document.getElementById('quiz');let qi=0,pts=0;
+function pergunta(){
+  if(qi>=QUIZ.length){qz.innerHTML=`<p class="hand win">Você acertou ${pts} de ${QUIZ.length}.</p><button class="chip" id="again">Jogar de novo</button>`;
+    document.getElementById('again').onclick=()=>{qi=0;pts=0;pergunta()};return}
+  const q=QUIZ[qi];
+  qz.innerHTML=`<p class="meta">Pergunta ${qi+1} de ${QUIZ.length}</p><p><b>${q[0]}</b></p><button class="opt" data-v="true">Verdade</button><button class="opt" data-v="false">Mito</button><p class="exp"></p>`;
+  qz.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+    const ok=(o.dataset.v==='true')===q[1];if(ok)pts++;
+    qz.querySelectorAll('.opt').forEach(x=>{x.disabled=true;x.classList.add((x.dataset.v==='true')===q[1]?'ok':'no')});
+    qz.querySelector('.exp').innerHTML=(ok?'Certo. ':'Errou. ')+q[2]+' <button class="chip" id="nx">Próxima</button>';
+    document.getElementById('nx').onclick=()=>{qi++;pergunta()};
+  }));
+}
+pergunta();
+
+go(location.hash.slice(1)||'inicio');
+
+/* ---------- Estrelas que se mexem ---------- */
+const sc=document.getElementById('stars'),sx=sc.getContext('2d');let S=[];
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function initStars(){sc.width=innerWidth;sc.height=innerHeight;
+  S=Array.from({length:Math.round(innerWidth*innerHeight/9000)},()=>({x:Math.random()*sc.width,y:Math.random()*sc.height,r:Math.random()*1.6+.4,v:Math.random()*.25+.05,p:Math.random()*6.28,s:Math.random()*2+.8,red:Math.random()<.12}))}
+let shoot=null;
+function drawStars(t){
+  sx.clearRect(0,0,sc.width,sc.height);
+  S.forEach(s=>{
+    if(!calm){s.y-=s.v;s.x-=s.v*.4;if(s.y<-5){s.y=sc.height+5;s.x=Math.random()*sc.width}if(s.x<-5)s.x=sc.width+5}
+    const a=.35+.65*Math.abs(Math.sin(t/1000*s.s+s.p));
+    sx.globalAlpha=a;sx.fillStyle=s.red?'#e4262f':'#f1eee6';
+    sx.beginPath();sx.arc(s.x,s.y,s.r,0,6.28);sx.fill();
+    if(s.r>1.6){sx.fillRect(s.x-s.r*3,s.y-.4,s.r*6,.8);sx.fillRect(s.x-.4,s.y-s.r*3,.8,s.r*6)}
+  });
+  if(!calm){
+    if(!shoot&&Math.random()<.004)shoot={x:Math.random()*sc.width,y:0};
+    if(shoot){const g=sx.createLinearGradient(shoot.x,shoot.y,shoot.x-90,shoot.y-45);
+      g.addColorStop(0,'#fff');g.addColorStop(1,'transparent');sx.globalAlpha=1;sx.strokeStyle=g;sx.lineWidth=2;
+      sx.beginPath();sx.moveTo(shoot.x,shoot.y);sx.lineTo(shoot.x-90,shoot.y-45);sx.stroke();
+      shoot.x+=14;shoot.y+=7;if(shoot.y>sc.height)shoot=null}
+    requestAnimationFrame(drawStars)}
+}
+initStars();addEventListener('resize',initStars);requestAnimationFrame(drawStars);
+
+/* ---------- Muro de spray ---------- */
+const wall=document.getElementById('wall'),wx=wall.getContext('2d');let cor='#e4262f',pintando=false;
+function pos(e){const r=wall.getBoundingClientRect();return[(e.clientX-r.left)*wall.width/r.width,(e.clientY-r.top)*wall.height/r.height]}
+function spray(x,y){wx.fillStyle=cor;for(let i=0;i<22;i++){const a=Math.random()*6.28,d=Math.random()*Math.random()*22;wx.fillRect(x+Math.cos(a)*d,y+Math.sin(a)*d,2,2)}}
+wall.addEventListener('pointerdown',e=>{pintando=true;wall.setPointerCapture(e.pointerId);spray(...pos(e))});
+wall.addEventListener('pointermove',e=>{if(pintando)spray(...pos(e))});
+['pointerup','pointercancel'].forEach(n=>wall.addEventListener(n,()=>pintando=false));
+document.querySelectorAll('[data-c]').forEach(b=>b.addEventListener('click',()=>{cor=b.dataset.c;document.querySelectorAll('[data-c]').forEach(x=>x.classList.toggle('on',x===b))}));
+document.getElementById('clear').addEventListener('click',()=>wx.clearRect(0,0,wall.width,wall.height));
+document.getElementById('stamp').addEventListener('click',()=>{
+  const x=80+Math.random()*(wall.width-160),y=60+Math.random()*(wall.height-160);
+  wx.fillStyle='#e4262f';wx.beginPath();wx.moveTo(x,y+50);wx.bezierCurveTo(x-60,y,x-30,y-50,x,y-15);wx.bezierCurveTo(x+30,y-50,x+60,y,x,y+50);wx.fill();
+  wx.strokeStyle='#f1eee6';wx.lineWidth=2;wx.beginPath();wx.moveTo(x,y+50);wx.quadraticCurveTo(x+14,y+90,x-6,y+120);wx.stroke()});
+</script>
 </body>
 </html>
