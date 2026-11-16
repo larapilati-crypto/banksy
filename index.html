@@ -283,7 +283,7 @@ addEventListener('hashchange',()=>go(location.hash.slice(1)));
 /* ---------- Quadro que se tritura ---------- */
 const SVG=`<svg viewBox="0 0 200 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="260" fill="#ece9e1"/><path d="M135 85C100 62 100 30 122 30c8 0 13 6 13 12 0-6 5-12 13-12 22 0 22 32-13 55z" fill="#e4262f"/><path d="M135 85Q120 115 100 150" stroke="#111" stroke-width="2" fill="none"/><circle cx="80" cy="150" r="14" fill="#111"/><path d="M70 140q-8 10 0 22M92 142q8 6 4 18" stroke="#111" stroke-width="5" fill="none"/><path d="M85 172L100 150" stroke="#111" stroke-width="7" stroke-linecap="round"/><path d="M80 164L52 236h56z" fill="#111"/><path d="M68 236v14M92 236v14" stroke="#111" stroke-width="6"/><path d="M20 252h160" stroke="#111" stroke-width="3"/></svg>`;
 const IMG_HERO='https://banksyexplained.com/images/prints/girl-with-balloon-2004/girl-with-balloon-unsigned-sothebys-18-march-2021.jpg';
-const frame=document.getElementById('frame');
+const frame=document.getElementById('Girl with balloon');
 for(let i=0;i<10;i++){
   const s=document.createElement('div'); s.className='strip'; s.style.left=i*10+'%';
   s.style.setProperty('--d',(38+Math.random()*22)+'%'); s.style.setProperty('--r',(Math.random()*8-4)+'deg');
